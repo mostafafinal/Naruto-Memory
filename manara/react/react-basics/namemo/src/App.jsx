@@ -83,9 +83,17 @@ function App() {
         </>
       )}
 
-      {status === "win" && <Modal message={"EYES OF GOD!"} status={"win"} />}
+      {status === "win" && (
+        <Modal message={"EYES OF GOD!"} status={"win"}>
+          <Button name={"New Game"} onClick={handleNewGame} />
+          <Button name={"Home"} onClick={handleGoHome} />
+        </Modal>
+      )}
       {status === "lose" && (
-        <Modal message={"USE YOUR RINNEGAN!"} status={"lose"} />
+        <Modal message={"USE YOUR RINNEGAN!"} status={"lose"}>
+          <Button name={"Replay"} onClick={handleNewGame} />
+          <Button name={"Home"} onClick={handleGoHome} />
+        </Modal>
       )}
 
       <Music />
