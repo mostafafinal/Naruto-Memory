@@ -1,13 +1,14 @@
 import data from "./data.js";
 import shuffler from "./shuffler.js";
 import Video from "./components/Video";
-import Card from "./components/Card";
-import Score from "./components/Score";
-import { useEffect, useState } from "react";
-import Modal from "./components/Modal";
-import Button from "./components/Button";
-import "./App.css";
 import Music from "./components/Music.jsx";
+import Score from "./components/Score";
+import Button from "./components/Button";
+import Card from "./components/Card";
+import Modal from "./components/Modal";
+import { useEffect, useState } from "react";
+import "./App.css";
+import Settings from "./components/Settings.jsx";
 
 function App() {
   const [characters, setCharacters] = useState(data);
@@ -37,12 +38,33 @@ function App() {
     setSelected((prev) => [...prev, id]);
   };
 
+  const handleNewGame = () => {
+    setSelected([]);
+    setStatus("play");
+    setCharacters(shuffler(characters));
+  };
+
+  const handleGoHome = () => {
+    setSelected([]);
+    setStatus(null);
+    setCharacters(shuffler(characters));
+  };
+
   return (
     <>
       <Video />
+      {status === "play" && <Settings onClick={() => setStatus("rinnegan")} />}
+
+      {status === "rinnegan" && (
+        <Modal status={"lose"} message={"RINNEGAN!"}>
+          <Button name={"Continue.."} onClick={() => setStatus("play")} />
+          <Button name={"New Game"} onClick={handleNewGame} />
+          <Button name={"Home"} onClick={handleGoHome} />
+        </Modal>
+      )}
       {status === null && (
         <Modal message={"Naruto Memory"}>
-          <Button onClick={() => setStatus("play")} />
+          <Button name={"Play"} onClick={() => setStatus("play")} />
         </Modal>
       )}
       {status === "play" && (
