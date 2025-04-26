@@ -1,13 +1,13 @@
 import "../styles/Card.css";
 
-const Card = () => {
+const Card = ({ img, name, onSelect }) => {
   return (
-    <div className="card">
+    <div className="card" onClick={onSelect}>
       <div className="card-image">
-        <img src="/src/assets/characters/hinata.jpg" alt="cardImage" />
+        <img src={`/src/assets/characters/${img}`} alt={name} />
       </div>
       <div className="card-name">
-        <h3 className="name">Hinata Hyuga</h3>
+        <h3 className="name">{name}</h3>
       </div>
     </div>
   );

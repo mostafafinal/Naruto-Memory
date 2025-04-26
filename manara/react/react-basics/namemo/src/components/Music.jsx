@@ -1,4 +1,4 @@
-// import "../styles/Music.css";
+import "../styles/Music.css";
 
 import { useState, useRef } from "react";
 
@@ -21,11 +21,11 @@ const Music = () => {
   return (
     <>
       <audio ref={audioRef} src="/src/assets/ninja-way.mp3" loop></audio>
-      <button onClick={handleAudioPlay}>
+      <button onClick={handleAudioPlay} className="music-btn">
         {playing ? (
-          <span class="material-symbols-outlined">music_note</span>
+          <span className="material-symbols-outlined">music_note</span>
         ) : (
-          <span class="material-symbols-outlined">music_off</span>
+          <span className="material-symbols-outlined">music_off</span>
         )}
       </button>
     </>

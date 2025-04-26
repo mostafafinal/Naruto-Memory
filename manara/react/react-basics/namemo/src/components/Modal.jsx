@@ -2,16 +2,13 @@ import Button from "./Button";
 import "../styles/Modal.css";
 import Layout from "./Layout";
 
-const Modal = () => {
+const Modal = ({ message, status, children }) => {
   return (
     <>
       <Layout />
-      <div className="modal">
-        <h2 className="modal-name">EYES OF SHARINGAN!</h2>
-        <div className="modal-cta">
-          <Button />
-          <Button />
-        </div>
+      <div className={`modal ${status}`}>
+        <h2 className="modal-name">{message}</h2>
+        <div className="modal-cta">{children}</div>
       </div>
     </>
   );

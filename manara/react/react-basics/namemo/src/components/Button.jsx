@@ -1,5 +1,9 @@
 import "../styles/Button.css";
 
-const Button = () => <button className="btn">Play</button>;
+const Button = ({ onClick }) => (
+  <button className="btn" onClick={onClick}>
+    Play
+  </button>
+);
 
 export default Button;
