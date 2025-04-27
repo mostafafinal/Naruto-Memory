@@ -6,14 +6,15 @@ import Score from "./components/Score";
 import Button from "./components/Button";
 import Card from "./components/Card";
 import Modal from "./components/Modal";
+import Settings from "./components/Settings.jsx";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Settings from "./components/Settings.jsx";
 
 function App() {
   const [characters, setCharacters] = useState(data);
   const [seleted, setSelected] = useState([]);
   const [status, setStatus] = useState(null);
+  const [flip, setFlip] = useState(false);
 
   useEffect(() => {
     setCharacters((chars) => [...shuffler(chars)]);
@@ -34,6 +35,8 @@ function App() {
       return;
     }
 
+    setFlip(true);
+    setTimeout(() => setFlip(false), 1300);
     setCharacters((chars) => [...shuffler(chars)]);
     setSelected((prev) => [...prev, id]);
   };
@@ -59,7 +62,7 @@ function App() {
         <Modal status={"lose"} message={"RINNEGAN!"}>
           <Button name={"Continue.."} onClick={() => setStatus("play")} />
           <Button name={"New Game"} onClick={handleNewGame} />
-          <Button name={"Home"} onClick={handleGoHome} />
+          <Button name={"Quit"} onClick={handleGoHome} />
         </Modal>
       )}
       {status === null && (
@@ -76,6 +79,7 @@ function App() {
                 key={char.id}
                 img={char.img}
                 name={char.name}
+                flip={flip}
                 onSelect={() => handleSelect(char.id)}
               />
             ))}

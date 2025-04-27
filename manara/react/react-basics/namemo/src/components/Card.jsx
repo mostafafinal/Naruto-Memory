@@ -1,13 +1,22 @@
 import "../styles/Card.css";
 
-const Card = ({ img, name, onSelect }) => {
+const Card = ({ img, name, flip, onSelect }) => {
   return (
-    <div className="card" onClick={onSelect}>
-      <div className="card-image">
-        <img src={`/src/assets/characters/${img}`} alt={name} />
-      </div>
-      <div className="card-name">
-        <h3 className="name">{name}</h3>
+    <div className="flip-card" onClick={onSelect}>
+      <div className={`flip-card-inner ${flip ? "flip" : ""}`}>
+        <div className="flip-card-front">
+          <div className="card-image">
+            <img src={`/src/assets/characters/${img}`} alt={name} />
+          </div>
+          <div className="card-name">
+            <h3 className="name">{name}</h3>
+          </div>
+        </div>
+        <div className="flip-card-back">
+          <div className="card-image">
+            <img src="/src/assets/sharingan.jpg" alt="card back" />
+          </div>
+        </div>
       </div>
     </div>
   );
