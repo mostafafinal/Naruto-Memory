@@ -1,0 +1,24 @@
+.music-btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+
+  transition: border-color 0.25s;
+
+  position: absolute;
+  right: 50px;
+  bottom: 30px;
+
+  border-radius: 50%;
+  border: solid #ac8e96;
+
+  &:hover {
+    border-color: #830020;
+  }
+
+  width: 3rem;
+  height: 3rem;
+}

@@ -1,0 +1,43 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 30rem;
+  height: 30rem;
+
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  &.lose {
+    background-image: url("/src/assets/rinnegan.jpg");
+  }
+  &.win {
+    background-image: url("/src/assets/sharingan.jpg");
+  }
+  background-size: cover;
+  background-position: center;
+
+  .modal-name {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .modal-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    .btn {
+      width: 50%;
+      padding: 1rem;
+
+      font-size: 2rem;
+    }
+  }
+}

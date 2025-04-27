@@ -1,0 +1,19 @@
+.score {
+  position: absolute;
+  top: 25px;
+  left: 26px;
+
+  display: flex;
+  gap: 15px;
+  padding: 0.5rem;
+
+  border: solid #ac8e96;
+  border-radius: 0.5rem;
+
+  .score-player {
+    color: #9d0a2e;
+  }
+  .score-target {
+    color: #a6f82d;
+  }
+}

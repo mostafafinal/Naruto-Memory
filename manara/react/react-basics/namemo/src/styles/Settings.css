@@ -1,0 +1,25 @@
+.settings-btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 39px;
+  right: 50px;
+
+  background-image: url("/src/assets/settings.png");
+  background-color: transparent;
+
+  width: 3rem;
+  height: 3rem;
+
+  border-radius: 50%;
+  border-color: transparent;
+
+  img {
+    width: inherit;
+    height: inherit;
+  }
+}
