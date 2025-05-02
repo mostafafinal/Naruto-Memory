@@ -1,8 +1,9 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import App from "../src/App";
 import data from "../src/data";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Card from "../src/components/Card";
 
 test("App initial render", () => {
   render(<App />);
@@ -15,7 +16,7 @@ test("App initial render", () => {
   ).toBeInTheDocument();
 });
 
-describe("welome layout user interaction", () => {
+describe("Welome layout user interaction", () => {
   test("music button interation", async () => {
     const user = userEvent.setup();
 
@@ -44,5 +45,24 @@ describe("welome layout user interaction", () => {
     expect(
       screen.getByRole("button", { name: "music_off" })
     ).toBeInTheDocument();
+  });
+});
+
+describe("Playing layout user interaction", () => {
+  test("settings user interation", async () => {
+    const user = userEvent.setup();
+
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: "Play" }));
+    await user.click(screen.getByRole("settings"));
+
+    expect(screen.getByRole("modal")).toBeInTheDocument();
+  });
+
+  test("card play", async () => {
+    render(<Card name={""} img={""} flip={true} onSelect={vi.fn()} />);
+
+    expect(screen.getByTestId("innerCard")).toHaveClass("flip");
   });
 });

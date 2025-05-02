@@ -6,7 +6,7 @@ const Modal = ({ message, status, children }) => {
   return (
     <>
       <Layout />
-      <div className={`modal ${status}`}>
+      <div role="modal" className={`modal ${status}`}>
         <h2 className="modal-name">{message}</h2>
         <div className="modal-cta">{children}</div>
       </div>

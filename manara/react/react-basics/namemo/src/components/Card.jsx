@@ -3,7 +3,10 @@ import "../styles/Card.css";
 const Card = ({ img, name, flip, onSelect }) => {
   return (
     <div data-testid="card" className="flip-card" onClick={onSelect}>
-      <div className={`flip-card-inner ${flip ? "flip" : ""}`}>
+      <div
+        data-testid="innerCard"
+        className={`flip-card-inner ${flip ? "flip" : ""}`}
+      >
         <div className="flip-card-front">
           <div className="card-image">
             <img src={`/src/assets/characters/${img}`} alt={name} />
