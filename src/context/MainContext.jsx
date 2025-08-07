@@ -49,7 +49,13 @@ const MainContextProvider = ({ children }) => {
 
   return (
     <MainContext
-      value={{ data, addToCards, rinnegan, openSettings, sharingan }}
+      value={{
+        data,
+        addToCards,
+        rinnegan,
+        openSettings,
+        sharingan,
+      }}
     >
       {children}
     </MainContext>

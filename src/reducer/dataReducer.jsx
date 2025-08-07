@@ -3,7 +3,7 @@ import shuffler from '../lib/utils/shuffler';
 const dataReducer = (data, action) => {
   switch (action.type) {
     case 'increment_score':
-      if (data.score == data.target) {
+      if (data.score + 1 == data.target) {
         return {
           ...data,
           status: 'win',
@@ -45,6 +45,7 @@ const dataReducer = (data, action) => {
     case 'new_game':
       return {
         ...action.data,
+        status: 'sharingan',
       };
   }
 };

@@ -7,7 +7,8 @@ const Cards = () => {
   const { data, addToCards } = useMainData();
 
   useEffect(() => {
-    setTimeout(() => setFlip(flip => !flip), 1300);
+    if (data.status != 'sharingan')
+      setTimeout(() => setFlip(flip => !flip), 1300);
   }, [data.score]);
 
   return (
