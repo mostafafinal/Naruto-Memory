@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
 import characters from '../lib/data';
-import shuffler from '../lib/utils/shuffler';
+import dataReducer from '../reducer/dataReducer';
 
 const INITIAL_STATE = {
   characters: characters,
@@ -14,53 +14,43 @@ const MainContext = createContext(INITIAL_STATE);
 export const useMainData = () => useContext(MainContext);
 
 const MainContextProvider = ({ children }) => {
-  const [data, setData] = useState(INITIAL_STATE);
+  const [data, dispatch] = useReducer(dataReducer, INITIAL_STATE);
   const [selectedCards, setSelectedCards] = useState([]);
 
-  const handleGameStatus = () => {
-    if (data.score != data.characters.length)
-      return setData(data => ({ ...data, status: 'lose' }));
+  const rinnegan = () => {
+    dispatch({
+      type: 'new_game',
+      data: INITIAL_STATE,
+    });
 
-    setData(data => ({ ...data, status: 'win' }));
-  };
-
-  const handleNewGame = () => {
-    setData(INITIAL_STATE);
     setSelectedCards([]);
   };
 
-  const openSettings = () => setData(data => ({ ...data, status: 'rinnegan' }));
+  const openSettings = () => dispatch({ type: 'rinnegan' });
 
-  const incrementScore = () => {
-    if (data.score == data.characters.length) return handleGameStatus();
+  const sharingan = () => dispatch({ type: 'sharingan' });
 
-    setData(data => ({ ...data, score: data.score + 1 }));
-  };
-
-  const shuffleCharacters = () =>
-    setTimeout(
-      () =>
-        setData(data => ({ ...data, characters: shuffler(data.characters) })),
-      1000
-    );
+  const incrementScore = () => dispatch({ type: 'increment_score' });
 
   const addToCards = id => {
     try {
       if (!id) throw Error;
 
-      if (selectedCards.includes(id)) return handleGameStatus();
+      if (selectedCards.includes(id)) return dispatch({ type: 'lose' });
 
       setSelectedCards([...selectedCards, id]);
+      setTimeout(() => dispatch({ type: 'shuffle_characters' }), 1000);
 
       incrementScore();
-      shuffleCharacters();
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <MainContext value={{ data, addToCards, handleNewGame, openSettings }}>
+    <MainContext
+      value={{ data, addToCards, rinnegan, openSettings, sharingan }}
+    >
       {children}
     </MainContext>
   );
