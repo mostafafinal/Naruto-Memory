@@ -1,10 +1,13 @@
-import "../styles/Score.css";
+import { useMainData } from '../context/MainContext';
+import '../styles/Score.css';
 
-const Score = ({ score, target }) => {
+const Score = () => {
+  const { data } = useMainData();
+
   return (
-    <div role="scores" className="score">
-      <div className="score-player">Score: {score}</div>
-      <div className="score-target">Target: {target}</div>
+    <div role='scores' className='score'>
+      <div className='score-player'>Score: {data.score}</div>
+      <div className='score-target'>Target: {data.target}</div>
     </div>
   );
 };
